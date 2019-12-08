@@ -1,0 +1,54 @@
+version: '3'
+services:
+    redaxo:
+        build: .
+        restart: always
+        depends_on:
+            - mysql
+        volumes:
+            - doc_root:/var/www/html
+    nginx:
+        image: wodby/php-nginx:1.15
+        restart: always
+        depends_on:
+            - redaxo
+        ports:
+            - 80:80
+        volumes:
+            - doc_root:/var/www/html
+            - ./redaxo.conf:/etc/nginx/redaxo.conf
+        environment:
+            NGINX_BACKEND_HOST: redaxo
+            NGINX_SERVER_NAME: php
+            NGINX_SERVER_EXTRA_CONF_FILEPATH: redaxo.conf
+    caddy:
+        image: abiosoft/caddy:1.0.3
+        restart: always
+        depends_on:
+            - nginx
+        ports:
+            - 443:2015
+        volumes:
+            - ./Caddyfile:/etc/Caddyfile
+            - ./certs:/root/certs
+    mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: redaxo
+            MYSQL_DATABASE: redaxo
+            MYSQL_USER: redaxo
+            MYSQL_PASSWORD: redaxo
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        depends_on:
+            - mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: redaxo
+            PMA_HOST: mysql
+volumes:
+    doc_root:
+

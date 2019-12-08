@@ -1,0 +1,11 @@
+localhost {
+    log stdout
+    tls /root/certs/localhost.pem /root/certs/localhost-key.pem
+
+    proxy / http://nginx:80 {
+        transparent
+        header_upstream Host  "localhost"
+    }
+}
+
+
