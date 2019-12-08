@@ -8,7 +8,7 @@ services:
         volumes:
             - doc_root:/var/www/html
     nginx:
-        image: wodby/php-nginx:1.15
+        image: tomcat2111/redaxo-nginx:0.0.1
         restart: always
         depends_on:
             - redaxo
@@ -16,7 +16,6 @@ services:
             - 80:80
         volumes:
             - doc_root:/var/www/html
-            - ./redaxo.conf:/etc/nginx/redaxo.conf
         environment:
             NGINX_BACKEND_HOST: redaxo
             NGINX_SERVER_NAME: php
