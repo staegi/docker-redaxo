@@ -1,11 +1,13 @@
 FROM php:7.4.0-fpm-alpine
 ENTRYPOINT ["docker-php-entrypoint"]
 
+RUN apk add --no-cache --virtual .build-deps \
+		$PHPIZE_DEPS \
+		freetype-dev \
+		libjpeg-turbo-dev \
+		libpng-dev
 RUN set -ex; \
-	    docker-php-ext-install -j "$(nproc)" \
-	        mysqli \
-	        pdo_mysql \
-	;
+	    docker-php-ext-install -j "$(nproc)" gd mysqli pdo pdo_mysql;
 
 VOLUME /var/www/html/media
 

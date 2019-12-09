@@ -19,7 +19,6 @@ services:
         environment:
             NGINX_BACKEND_HOST: redaxo
             NGINX_SERVER_NAME: php
-            NGINX_SERVER_EXTRA_CONF_FILEPATH: redaxo.conf
     caddy:
         image: abiosoft/caddy:1.0.3
         restart: always
@@ -50,4 +49,3 @@ services:
             PMA_HOST: mysql
 volumes:
     doc_root:
-
