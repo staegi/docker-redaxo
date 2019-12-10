@@ -9,7 +9,7 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN set -ex; \
 	    docker-php-ext-install -j "$(nproc)" gd mysqli pdo pdo_mysql;
 
-VOLUME /var/www/html/media
+VOLUME /var/www/html
 
 ENV REDAXO_DATABASE_HOST mysql
 ENV REDAXO_DATABASE_NAME redaxo
