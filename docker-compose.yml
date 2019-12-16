@@ -49,6 +49,16 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: redaxo
             PMA_HOST: mysql
+    webdav:
+        image: sashgorokhov/webdav
+        restart: always
+        ports:
+            - 8888:80
+        volumes:
+            - doc_root:/media
+        environment:
+            USERNAME: redaxo
+            PASSWORD: redaxo
 volumes:
     doc_root:
     db_data:
