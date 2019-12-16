@@ -5,9 +5,11 @@ RUN apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
 		freetype-dev \
 		libjpeg-turbo-dev \
-		libpng-dev
+		libpng-dev \
+		libzip-dev \
+	; \
 RUN set -ex; \
-	    docker-php-ext-install -j "$(nproc)" gd mysqli pdo pdo_mysql;
+	    docker-php-ext-install -j "$(nproc)" gd mysqli pdo pdo_mysql zip;
 
 VOLUME /var/www/html
 
