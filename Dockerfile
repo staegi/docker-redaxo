@@ -9,7 +9,7 @@ RUN apk add --no-cache --virtual .build-deps \
 		libzip-dev \
 	; \
 RUN set -ex; \
-	    docker-php-ext-install -j "$(nproc)" gd mysqli pdo pdo_mysql zip;
+	    docker-php-ext-install -j "$(nproc)" gd pdo_mysql zip;
 
 VOLUME /var/www/html
 

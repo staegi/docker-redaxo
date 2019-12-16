@@ -13,6 +13,6 @@ redaxo/bin/console db:set-connection --host=$REDAXO_DATABASE_HOST --database=$RE
 redaxo/bin/console setup:check
 
 chown -R www-data:www-data .
-chmod +w redaxo/data/core/config.yml
+chmod -R a+w,g+s .
 
 php-fpm
