@@ -23,9 +23,6 @@ ENV REDAXO_VERSION 5.8.1
 
 RUN curl -o /redaxo.zip -fSL "https://redaxo.org/download/redaxo/${REDAXO_VERSION}.zip"
 
-COPY fix-perms.sh /usr/local/bin/fixperms
-RUN chmod +x /usr/local/bin/fixperms
-
 COPY docker-run.sh /usr/local/bin/run
 RUN chmod +x /usr/local/bin/run
 CMD ["run"]
