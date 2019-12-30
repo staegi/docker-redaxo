@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if [ ! -e redaxo ]; then
-    unzip -o /redaxo.zip -d /var/www/html
+    sudo -u www-data unzip -o /redaxo.zip -d /var/www/html
 else
     echo "Redaxo has already been installed"
 fi
@@ -20,6 +20,9 @@ else
     echo "Console file is not executable"
     exit
 fi
+
+echo "Assign www-data to files"
+chown -R www-data:www-data .
 
 if [ -w . ]; then
     echo "Directory is writable"
