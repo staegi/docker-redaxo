@@ -15,14 +15,12 @@ if [ -x redaxo/bin/console ]; then
     php redaxo/bin/console db:set-connection --host=$REDAXO_DATABASE_HOST --database=$REDAXO_DATABASE_NAME --login=$REDAXO_DATABASE_USERNAME --password=$REDAXO_DATABASE_PASSWORD
 
     echo "Check setup"
-    php redaxo/bin/console setup:check
+    php redaxo/bin/console setup:check && php-fpm || fixperms
 else
     echo "Console file is not executable"
+    exit
 fi
 
-echo "Correcting file permissions"
-chown -R www-data:www-data .
-chmod -R a+w,g+s .
 
 echo "Finally launch FPM"
 php-fpm
