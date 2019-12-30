@@ -11,6 +11,8 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN set -ex; docker-php-ext-configure gd --with-freetype --with-jpeg;
 RUN set -ex; docker-php-ext-install -j "$(nproc)" gd pdo_mysql zip;
 
+COPY php.ini /usr/local/etc/php
+
 VOLUME /var/www/html
 
 ENV REDAXO_DATABASE_HOST mysql
