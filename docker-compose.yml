@@ -18,7 +18,7 @@ services:
             - doc_root:/var/www/html
         environment:
             NGINX_BACKEND_HOST: redaxo
-            NGINX_SERVER_NAME: php
+            NGINX_SERVER_NAME: _
     caddy:
         image: abiosoft/caddy:1.0.3
         restart: always

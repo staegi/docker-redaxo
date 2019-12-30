@@ -12,10 +12,10 @@ chmod a+x redaxo/bin/console
 
 if [ -x redaxo/bin/console ]; then
     echo "Set database connection to $REDAXO_DATABASE_NAME on $REDAXO_DATABASE_HOST"
-    redaxo/bin/console db:set-connection --host=$REDAXO_DATABASE_HOST --database=$REDAXO_DATABASE_NAME --login=$REDAXO_DATABASE_USERNAME --password=$REDAXO_DATABASE_PASSWORD
+    php redaxo/bin/console db:set-connection --host=$REDAXO_DATABASE_HOST --database=$REDAXO_DATABASE_NAME --login=$REDAXO_DATABASE_USERNAME --password=$REDAXO_DATABASE_PASSWORD
 
     echo "Check setup"
-    redaxo/bin/console setup:check
+    php redaxo/bin/console setup:check
 else
     echo "Console file is not executable"
 fi
