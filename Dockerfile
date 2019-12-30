@@ -8,8 +8,8 @@ RUN apk add --no-cache --virtual .build-deps \
 		libpng-dev \
 		libzip-dev \
 	; \
-RUN set -ex; \
-	    docker-php-ext-install -j "$(nproc)" gd pdo_mysql zip;
+RUN set -ex; docker-php-ext-configure gd --with-freetype --with-jpeg;
+RUN set -ex; docker-php-ext-install -j "$(nproc)" gd pdo_mysql zip;
 
 VOLUME /var/www/html
 
